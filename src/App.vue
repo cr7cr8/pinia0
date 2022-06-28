@@ -3,16 +3,18 @@
   <!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
   {{ aaa.counter }}
   <button @click="aaa.increment()">+</button>
-    <button @click="aaa.decrement()">-</button>
+  <button @click="aaa.decrement()">-</button>
   {{ aaa.doubleCount }}
   <br />
   {{ counter }}
   <br />
   {{ doubleCount }}
   <button @click="aaa.$reset()">reset</button>
-  <a-button type="dashed" @click="alertFn(new Date())" class="btn"
+
+  <a-button type="dashed" @click="changeColor" :class="btnClass"
     >Primary Button</a-button
   >
+
   <div :class="style">footer</div>
 </template>
 
@@ -22,7 +24,7 @@ import { useCounterStore } from "./store";
 import { storeToRefs } from "pinia";
 import { Button, message } from "ant-design-vue";
 import { css } from "@emotion/css";
-import { ref, computed } from "vue";
+import { ref, computed, watchEffect } from "vue";
 export default {
   name: "App",
   components: { HelloWorld },
@@ -46,6 +48,38 @@ const style = computed(() =>
     color: "white",
   })
 );
+
+const btnBackColor = ref("pink");
+function changeColor() {
+  //alert("xxx");
+  btnBackColor.value = btnBackColor.value === "orange" ? "pink" : "orange";
+}
+const btnClass = computed(() => {
+  console.log(btnBackColor.value);
+  return css({
+    color: "tomato",
+    "&.ant-btn": { backgroundColor: btnBackColor.value },
+  });
+});
+
+watchEffect(() => {
+  console.log(btnClass);
+});
+
+// const btnClass = watchEffect(() => {
+//   console.log(btnBackColor.value);
+//   return css({
+//     color: "tomato",
+//     backgroundColor: btnBackColor.value,
+//   });
+// });
+</script>
+
+
+<script setup>
+
+
+
 </script>
 
 
