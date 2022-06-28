@@ -9,9 +9,7 @@
   <br />
   {{ doubleCount }}
   <button @click="aaa.$reset()">reset</button>
-  <a-button type="dashed" @click="alertFn(new Date())" class="btn"
-    >Primary Button</a-button
-  >
+  <a-button type="primary" @click="alertFn(new Date())">Primary Button</a-button>
 </template>
 
 <script >
@@ -22,18 +20,30 @@ import { Button, message } from "ant-design-vue";
 export default {
   name: "App",
   components: { HelloWorld },
+
+  // setup() {
+  //   const aaa = useCounterStore();
+  //   aaa.$reset;
+  //   const { counter, doubleCount } = storeToRefs(aaa);
+  //   console.log("====", counter, doubleCount);
+
+  //   return {
+  //     aaa,
+  //     counter,
+  //     doubleCount,
+  //   };
+  // },
 };
 </script>
 
 <script setup>
-const aaa = useCounterStore();
-aaa.$reset;
-const { counter, doubleCount } = storeToRefs(aaa);
-console.log("====", counter, doubleCount);
+  const aaa = useCounterStore();
+  aaa.$reset;
+  const { counter, doubleCount } = storeToRefs(aaa);
+  console.log("====", counter, doubleCount);
 
-const alertFn = function (msg) {
-  alert(msg);
-};
+  const alertFn = function(msg){alert(msg)}
+
 </script>
 
 
@@ -46,10 +56,5 @@ const alertFn = function (msg) {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-}
-.btn {
-  & span {
-    color: brown;
-  }
 }
 </style>
