@@ -25,6 +25,14 @@ import { storeToRefs } from "pinia";
 import { Button, message } from "ant-design-vue";
 import { css } from "@emotion/css";
 import { ref, computed, watchEffect } from "vue";
+import facepaint from "facepaint";
+const mq = facepaint([
+  "@media(min-width: 600px) and (max-width: 899px)",
+  "@media(min-width: 900px) and (max-width: 1199px)",
+  "@media(min-width: 1200px) and (max-width: 1535px)",
+  "@media(min-width: 1536px)",
+]);
+
 export default {
   name: "App",
   components: { HelloWorld },
@@ -42,11 +50,23 @@ const alertFn = function (msg) {
 };
 
 const style = computed(() =>
-  css({
-    background: "purple",
-    fontSize: Math.max(counter.value, 10) + "px",
-    color: "white",
-  })
+  css([
+    {
+      fontSize: Math.max(counter.value, 10) + "px",
+      color: "white",
+      height: "200px",
+    },
+
+    mq({
+      backgroundColor: [
+        "rgba(200,10,10,0.2)",
+        "rgba(200,10,10,0.4)",
+        "rgba(200,10,10,0.6)",
+        "rgba(200,10,10,0.8)",
+        "rgba(200,10,10,1)",
+      ],
+    }),
+  ])
 );
 
 const btnBackColor = ref("pink");
@@ -77,9 +97,6 @@ watchEffect(() => {
 
 
 <script setup>
-
-
-
 </script>
 
 
