@@ -15,7 +15,7 @@
     >Primary Button</a-button
   >
 
-  <div :class="style">footer</div>
+  <div :class="cssObj">footer</div>
 </template>
 
 <script >
@@ -49,12 +49,13 @@ const alertFn = function (msg) {
   alert(msg);
 };
 
-const style = computed(() =>
+const cssObj = computed(() =>
   css([
     {
       fontSize: Math.max(counter.value, 10) + "px",
       color: "white",
       height: "200px",
+      T
     },
 
     mq({
