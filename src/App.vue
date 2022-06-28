@@ -55,7 +55,6 @@ const cssObj = computed(() =>
       fontSize: Math.max(counter.value, 10) + "px",
       color: "white",
       height: "200px",
-      T
     },
 
     mq({
