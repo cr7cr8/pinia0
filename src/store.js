@@ -26,6 +26,9 @@ export const useCounterStore = defineStore("counter", () => {
     const increment = () => {
         counter.value++
     }
+    const decrement = () => {
+        counter.value--
+    }
     const doubleCount = computed(() => {
         return counter.value * 2
     })
@@ -34,6 +37,7 @@ export const useCounterStore = defineStore("counter", () => {
     return {
         counter,
         increment,
+        decrement,
         doubleCount
     }
 

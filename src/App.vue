@@ -3,6 +3,7 @@
   <!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
   {{ aaa.counter }}
   <button @click="aaa.increment()">+</button>
+    <button @click="aaa.decrement()">-</button>
   {{ aaa.doubleCount }}
   <br />
   {{ counter }}
@@ -12,6 +13,7 @@
   <a-button type="dashed" @click="alertFn(new Date())" class="btn"
     >Primary Button</a-button
   >
+  <div :class="style">footer</div>
 </template>
 
 <script >
@@ -19,6 +21,8 @@ import HelloWorld from "./components/HelloWorld.vue";
 import { useCounterStore } from "./store";
 import { storeToRefs } from "pinia";
 import { Button, message } from "ant-design-vue";
+import { css } from "@emotion/css";
+import { ref, computed } from "vue";
 export default {
   name: "App",
   components: { HelloWorld },
@@ -34,6 +38,14 @@ console.log("====", counter, doubleCount);
 const alertFn = function (msg) {
   alert(msg);
 };
+
+const style = computed(() =>
+  css({
+    background: "purple",
+    fontSize: Math.max(counter.value, 10) + "px",
+    color: "white",
+  })
+);
 </script>
 
 
@@ -48,8 +60,12 @@ const alertFn = function (msg) {
   margin-top: 60px;
 }
 .btn {
+  &.ant-btn {
+    background-color: pink;
+  }
+
   & span {
-    color: brown;
+    color: orange;
   }
 }
 </style>
